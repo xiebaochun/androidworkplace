@@ -33,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements SurfaceHolder.Callback{
@@ -62,7 +63,10 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+       
+
+        TextView t=(TextView)findViewById(R.id.textView1); 
+        t.setText("activity创建");
         //getWindowManager().getDefaultDisplay().getMetrics(DisMet);
         
         mr_sv = (SurfaceView)findViewById(R.id.mr_sv);
@@ -115,6 +119,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		TextView t=(TextView)findViewById(R.id.textView1);
+		t.append("->surfaceCreated");
 	}
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
@@ -129,6 +135,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback{
 		menu.add(0, MENU_MRPHOTO, 2, "相册");
 		menu.add(0, MENU_ABOUT, 3, "关于");
 		menu.add(0, MENU_EXIT, 3, "退出");
+		TextView t=(TextView)findViewById(R.id.textView1);
+		t.append("->CreateOptionsMenu");
 		return super.onCreateOptionsMenu(menu);
 	}
 	@Override
@@ -163,6 +171,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback{
 				public void onClick(DialogInterface arg0, int arg1) {
 					// TODO Auto-generated method stub
 					arg0.dismiss();
+					System.exit(1);
 					exit();
 				}
 			});
@@ -184,7 +193,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback{
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		
+		TextView t=(TextView)findViewById(R.id.textView1);
+		t.append("->onTouchEvent");
 		if (event.getAction()==MotionEvent.ACTION_DOWN)
 		{
 			int x = (int)event.getX();
@@ -215,6 +225,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback{
 		@Override
 		public void onAutoFocus(boolean success, Camera camera) {
 			// TODO Auto-generated method stub
+			TextView t=(TextView)findViewById(R.id.textView1);
+			t.append("->onAutoFocus");
 			camera.takePicture(new shutter(), new raw(), new jpeg());
 		}
 		
