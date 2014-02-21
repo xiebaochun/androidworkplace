@@ -1,0 +1,5 @@
+package com.example.camera;
+import java.io.IOException;
+public class MySurfaceView {
+
+}

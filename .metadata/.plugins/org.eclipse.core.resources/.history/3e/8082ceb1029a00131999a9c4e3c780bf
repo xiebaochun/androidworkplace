@@ -1,0 +1,10 @@
+package com.example.camera;
+
+import java.io.IOException;
+ 
+  import android.content.Context;
+  import android.graphics.PixlFormat;
+   
+public class MySurfaceView {
+
+}

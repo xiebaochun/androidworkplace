@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.nio.channels.ReadableByteChannel"/>
+<fullyQualifiedTypeName name="java.nio.channels.Channels"/>
+<fullyQualifiedTypeName name="com.example.html5app.R.id"/>
+<fullyQualifiedTypeName name="com.example.html5app.R.string"/>
+<fullyQualifiedTypeName name="android.R"/>
+<fullyQualifiedTypeName name="com.example.camera.R.id"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+</qualifiedTypeNameHistroy>

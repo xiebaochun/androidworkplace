@@ -1,0 +1,9 @@
+package com.example.camera;
+
+import java.io.IOException;
+ 
+  import android.content.Content;
+
+public class MySurfaceView {
+
+}
