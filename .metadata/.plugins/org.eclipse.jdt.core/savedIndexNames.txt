@@ -1,24 +1,12 @@
-INDEX VERSION 1.126+F:\github\androidworkplace\.metadata\.plugins\org.eclipse.jdt.core
-30765161.index
-4155206848.index
-3065916431.index
-4041092966.index
-1995173708.index
-429277136.index
-2577175673.index
-305854171.index
-4108727661.index
-163172794.index
-658075796.index
-3133528496.index
+INDEX VERSION 1.126+J:\github\androidworkplace\.metadata\.plugins\org.eclipse.jdt.core
+3316554365.index
+976167043.index
+374765358.index
 183264773.index
-1697886153.index
-1299022128.index
-4125434098.index
-1498219845.index
-1115467115.index
-3974580528.index
-1654268137.index
-3021630319.index
 4100658733.index
 2302848042.index
+972724597.index
+2065623608.index
+2577175673.index
+4125434098.index
+4180713618.index
