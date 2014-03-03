@@ -1,0 +1,8 @@
+package com.example.draganddrop;
+
+import org.cocos2d.layers.CCLayer;
+
+public class GameLayer extends CCLayer {
+
+	
+}

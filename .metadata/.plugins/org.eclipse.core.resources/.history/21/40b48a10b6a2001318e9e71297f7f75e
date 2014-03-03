@@ -1,0 +1,17 @@
+package com.example.draganddrop;
+
+import org.cocos2d.layers.CCLayer;
+import org.cocos2d.layers.CCScene;
+
+public class GameLayer extends CCLayer {
+
+	public static CCScene scene()
+	{
+	    CCScene scene = CCScene.node();
+	    CCLayer layer = new GameLayer();
+	 
+	    scene.addChild(layer);
+	 
+	    return scene;
+	}
+}
