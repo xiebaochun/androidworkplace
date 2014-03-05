@@ -1,0 +1,9 @@
+package com.example.draganddrop;
+
+public class CommonItem {
+	public static float SIZE_RATE_X;
+	public static float SIZE_RATE_Y;
+	public static final float GAME_WIDTH=1280;
+	public static final float GAME_HEIGHT=768;
+	public static float dt=1;
+}

@@ -1,0 +1,18 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCSprite;
+
+public class MySprite{
+	CCSprite sprite;
+	float fixedSizeRate=1;
+	public MySprite(String filePath,int positionX,int positionY)
+	{
+		sprite=CCSprite.sprite(filePath+".png");
+		sprite.setAnchorPoint(0,0);
+		sprite.setPosition(positionX*CommonItem.SIZE_RATE_X,positionY*CommonItem.SIZE_RATE_Y);
+		sprite.setScaleY(CommonItem.SIZE_RATE_Y*fixedSizeRate);
+		sprite.setScaleX(CommonItem.SIZE_RATE_X*fixedSizeRate);
+	}
+	
+	
+}

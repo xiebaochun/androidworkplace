@@ -1,0 +1,12 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCSprite;
+
+public class MySprite{
+	CCSprite sprite;
+	public MySprite(String fileFath,int positionX,int positionY)
+	{
+		int d=GamePlaer.SIZE_RATE_X;
+	}
+	
+}
