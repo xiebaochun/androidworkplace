@@ -26,4 +26,5 @@
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.cocos2d.menus.CCMenuItemImage"/>
 </qualifiedTypeNameHistroy>

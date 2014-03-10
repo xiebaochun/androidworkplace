@@ -53,7 +53,6 @@ public class GameLayer extends CCColorLayer {
 	MySprite gameStart;
 	MySprite replay;
 	MySprite pass;
-    
 	//MySprite number;
 	MySprite[] answers=new MySprite[5];
     Number score_num;
@@ -251,7 +250,7 @@ public class GameLayer extends CCColorLayer {
 					if(redCards[i].collisionRect.contains(CommonItem.touchPoint)&&CommonItem.currenTouchState==CommonItem.TouchState.move)
 					{
 					///redCards[i].setPosition(CommonItem.touchPoint.x-50,CommonItem.touchPoint.y-50);
-					  redCards[i].setPosition((CommonItem.touchPoint.x),(CommonItem.touchPoint.y));
+					redCards[i].setPosition((CommonItem.touchPoint.x),(CommonItem.touchPoint.y));
 				    
 					}
 				}

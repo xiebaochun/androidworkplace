@@ -1,0 +1,8 @@
+package com.example.draganddrop;
+
+public class Button extends CCMenuItemImage{
+     public Button()
+     {
+    	 
+     }
+}

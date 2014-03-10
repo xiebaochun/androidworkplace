@@ -8,7 +8,6 @@ import android.util.Log;
 
 public class MySprite{
 	public CCSprite sprite;
-	
 	public int currentFrameX=0;
 	public int currentFrameY=0;
 	public int textTureWidth;
