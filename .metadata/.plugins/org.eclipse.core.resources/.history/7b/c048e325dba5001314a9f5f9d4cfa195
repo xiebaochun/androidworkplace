@@ -1,0 +1,17 @@
+package com.example.draganddrop;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.cocos2d.types.CGPoint;
+
+public class Card extends MySprite{
+     
+    
+     Boolean isTouched=false;
+     public Card(String filePath,Boolean isVisible,CGPoint position)
+     {
+    	 super( filePath,isVisible, position);
+    	
+     }
+}

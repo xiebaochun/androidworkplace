@@ -1,0 +1,206 @@
+package com.example.draganddrop;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.cocos2d.events.CCTouchDispatcher;
+import org.cocos2d.layers.CCColorLayer;
+import org.cocos2d.layers.CCLayer;
+import org.cocos2d.layers.CCScene;
+import org.cocos2d.nodes.CCDirector;
+import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.types.CGPoint;
+import org.cocos2d.types.CGSize;
+import org.cocos2d.types.ccColor4B;
+
+import android.util.Log;
+import android.view.MotionEvent;
+
+public class GameLayer extends CCColorLayer {
+    
+	public enum GameState{start,play,over};
+	public GameState gamestate=GameState.start;
+	public int playerPositionX=0;
+	public int timeTick=0;
+	public int timeSeconedTick=0;
+	public int eachStageTime=60;
+	public int stageCount=1;
+	public int level=1;
+	
+	public final CGPoint QUESTION_POSITION=CGPoint.make(150,450);
+	public final CGPoint TIME_BAR_POSITION=CGPoint.make(280,595);
+	public final CGPoint GAME_START_POSITION=CGPoint.make(430,216);
+
+	public final int TIME_BAR_HEIGHT=40;
+	public final int TIME_BAR_WIDTH=768;
+	 public final int EACH_CARDS_COUNT=5;
+	public CGPoint touchPoint;
+	public Boolean isGamePause=true;
+	MySprite backGround;
+	MySprite stateBar;
+	MySprite TimeBar;
+	MySprite player;
+	MySprite question;
+	MySprite timeBar;
+	MySprite gameStart;
+	MySprite replay;
+	MySprite pass;
+	MySprite number;
+    Number score;
+    Number stage;
+    Number target;
+    List<Card>  redCards=new ArrayList<Card>();
+    List<Card>  blueCards=new ArrayList<Card>();
+    List<Card>  greenCards=new ArrayList<Card>();
+	public static CCScene scene()
+	{
+	    CCScene scene = CCScene.node();
+	    CCColorLayer layer = new GameLayer(ccColor4B.ccc4(255, 255, 255, 0));
+
+	 
+	    scene.addChild(layer);
+	 
+	    return scene;
+	}
+	protected GameLayer(ccColor4B color)
+	{
+		
+	    super(color);
+	    CGSize winSize = CCDirector.sharedDirector().displaySize();
+	    CommonItem.SIZE_RATE_Y=(float)(winSize.height/CommonItem.GAME_HEIGHT);
+	    CommonItem.SIZE_RATE_X=(float)(winSize.width/CommonItem.GAME_WIDTH);
+	    Log.v("log","winSize.height:"+winSize.height);
+	    Log.v("log","SIZE_RATE_Y"+ CommonItem.SIZE_RATE_Y);
+	    player = new MySprite("Player.png",true,CGPoint.zero());
+	    player.sprite.setOpacity(90);
+	    question= new MySprite("question.png",true,QUESTION_POSITION);    
+	    question.fixedSizeRate((float)1280/2500);
+	    backGround=new MySprite("bg_b.png",true,CGPoint.zero());
+	    stateBar=new MySprite("StateBar.png",true,CGPoint.make(15, 555));
+	    
+	    score=new Number(this,0,16,CGPoint.make(200, 650));
+	    score.setNumber(69);
+	    timeBar=new MySprite("TimeBar.png",true,TIME_BAR_POSITION);
+	    gameStart=new MySprite("GameStart.png",true,GAME_START_POSITION);
+	    replay==new MySprite("replay.png",false,GAME_START_POSITION);
+	    passs==new MySprite("continue.png",false,GAME_START_POSITION);
+	    number=new MySprite("stageNumber.png",true,CGPoint.zero(),11,1);
+	    Log.v("log","my");
+	    
+	    loadCards();
+		
+	    addChild(player.sprite);
+	    addChild(backGround.sprite,-5);
+	    addChild(stateBar.sprite,-4);
+	    addChild(question.sprite,-4);
+	    addChild(timeBar.sprite,-3);
+	    addChild(gameStart.sprite,-3);
+	    addChild(number.sprite,-3);
+	    Timer timer=new Timer();
+	    timer.scheduleAtFixedRate( new TimerTask(){
+			public void run() {
+				gameUpdate();
+			}
+		}, 0, (long)(1000/60) );
+	   // schedule("gameUpdate");
+	}
+	
+	
+	private void loadCards() {
+		 for(int i=0;i<EACH_CARDS_COUNT;i++)
+	   	 {
+		    Card cardSprite=new Card("red-"+(i+1),false,CGPoint.zero());
+	   		redCards.add(cardSprite);
+	   		
+	   	 }
+	   	 for(int i=0;i<EACH_CARDS_COUNT;i++)
+	   	 {
+	   		Card cardSprite=new Card("blue-"+(i+1),false,CGPoint.zero());
+	   		blueCards.add(cardSprite);
+	   		
+	   	 }
+	   	 for(int i=0;i<EACH_CARDS_COUNT;i++)
+	   	 {
+	   		Card cardSprite=new Card("green-"+(i+1),false,CGPoint.zero());
+	   		greenCards.add(cardSprite);
+	   		
+	   	 }
+		
+	}
+	public void gameUpdate() {	
+		CommonItem.currenTouchState=CommonItem.touchState;
+		touchPoint=CommonItem.touchPoint;
+		spriteRectAndeventUpdate();
+		switch(gamestate)
+		{
+		   case start:
+			   if(isGamePause==false)
+			   {
+				   gamestate=GameState.play;
+			   }
+			   break;
+		   case play:
+			   if(isGamePause==false)
+			   {
+				   timeUpdate();
+			   }
+			   
+			   break;
+		   case over:
+			   break;
+		   default: 
+               break;
+		}
+		
+		playerPositionX+=CommonItem.dt;
+		player.setPosition(playerPositionX, 0);
+		if(playerPositionX>=1500)CommonItem.dt=-1;
+		if(playerPositionX<0)CommonItem.dt=1;
+		
+		CommonItem.preTouchState=CommonItem.currenTouchState;
+	}
+	public void spriteRectAndeventUpdate() {
+		if(gameStart.getVisible()==true)
+		{
+			
+		  if(tap()&&gameStart.collisionRect.contains(touchPoint))
+		  {
+			  
+			  gameStart.setVisible(false);
+			  isGamePause=false;
+		  }
+		}
+		
+	}
+	//if is tap in screen
+	private boolean tap() {
+		if((CommonItem.preTouchState==CommonItem.TouchState.down||CommonItem.preTouchState==CommonItem.TouchState.move)&&CommonItem.currenTouchState==CommonItem.TouchState.up)
+		{
+			Log.v("touchState","tap");
+			Log.v("touchState","pisition:"+touchPoint.toString());
+			return true;
+		}
+		return false;
+	}
+	public void timeUpdate() {
+		timeTick++;
+		
+		if(timeTick>=60)
+		{
+			
+		   timeTick=0;
+		   timeSeconedTick++;
+			Log.v("log",""+timeSeconedTick);//log
+		   if(timeSeconedTick>=eachStageTime)
+		   {
+			   timeSeconedTick=0;
+			   isGamePause=true;
+		   }
+		   timeBar.sprite.setTextureRect(0, 0, ((float)(eachStageTime-timeSeconedTick)/eachStageTime)*TIME_BAR_WIDTH,50 , false);
+		}
+		
+	}
+	
+}

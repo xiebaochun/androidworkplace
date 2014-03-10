@@ -9,9 +9,21 @@
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.view.MotionEvent"/>
 <fullyQualifiedTypeName name="org.cocos2d.events.CCTouchDispatcher"/>
 <fullyQualifiedTypeName name="org.cocos2d.opengl.CCGLSurfaceView"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="org.cocos2d.types.CGRect"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.example.draganddrop.CommonItem.TouchState"/>
+<fullyQualifiedTypeName name="com.example.draganddrop.CommonItem.TouchPoint"/>
+<fullyQualifiedTypeName name="org.cocos2d.types.CGPoint"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="android.util.Xml"/>
+<fullyQualifiedTypeName name="org.xmlpull.v1.XmlPullParserFactory"/>
+<fullyQualifiedTypeName name="org.xmlpull.v1.XmlPullParser"/>
+<fullyQualifiedTypeName name="org.xmlpull.v1.XmlPullParserException"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

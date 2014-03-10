@@ -1,0 +1,25 @@
+package com.example.draganddrop;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.cocos2d.types.CGPoint;
+
+public class Card {
+     Boolean isTouched=false;
+     List<MySprite>  redCards=new ArrayList<MySprite>();
+     List<MySprite>  blueCards=new ArrayList<MySprite>();
+     List<MySprite>  greenCards=new ArrayList<MySprite>();
+     public final int EACH_CARDS_COUNT=5;
+     
+     public Card()
+     {
+    	 for(int i=0;i<EACH_CARDS_COUNT;i++)
+    	 {
+    		MySprite cardSprite=new MySprite("red-"+(i+1),false,CGPoint.zero());
+    		redCards.add(cardSprite);
+    	 }
+    	 
+    	 
+     }
+}

@@ -1,0 +1,30 @@
+package com.example.draganddrop;
+
+import java.io.InputStream;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import android.util.Xml;
+
+public class Question {
+    public Question()
+    {
+    	//xmlpullparser parser = Xml.newPullParser();
+    	XmlPullParserFactory pullParserFactory;
+		try {
+			pullParserFactory = XmlPullParserFactory.newInstance();
+			XmlPullParser parser = pullParserFactory.newPullParser();
+			InputStream in_s = getApplicationContext().getAssets().open("temp.xml");
+	        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in_s, null);
+
+            parseXML(parser);
+		} catch (XmlPullParserException e) {
+
+			e.printStackTrace();
+		}
+    }
+    
+}

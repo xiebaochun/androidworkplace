@@ -1,0 +1,21 @@
+package com.example.draganddrop;
+
+import org.cocos2d.types.CGPoint;
+
+public class CommonItem {
+	public static float SIZE_RATE_X;
+	public static float SIZE_RATE_Y;
+	public static final float GAME_WIDTH=1280;
+	public static final float GAME_HEIGHT=768;
+	public static float dt=1;
+	public static CGPoint touchPoint=new CGPoint();
+	public static class TouchStatePoint extends CGPoint{       
+		                           CGPoint downPoint;
+		                           CGPoint movePoint;
+		                           CGPoint upPoint;
+		                          };
+	public static enum TouchState{down,move,up,none};
+	public static TouchState touchState=TouchState.none;
+	public static TouchState currenTouchState=TouchState.none;
+	public static TouchState preTouchState=TouchState.none;
+}

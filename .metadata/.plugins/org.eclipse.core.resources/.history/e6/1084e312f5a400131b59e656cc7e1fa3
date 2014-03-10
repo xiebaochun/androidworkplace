@@ -1,0 +1,70 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.types.CGRect;
+
+import android.util.Log;
+
+public class MySprite{
+	public CCSprite sprite;
+	public int currentFrameX=0;
+	public int currentFrameY=0;
+	public int textTureWidth;
+	public int textTureHeight;
+	public Rectangle collisionRect;
+	public MySprite(String filePath,Boolean isVisible,CGPoint position)
+	{
+		
+		try{
+			this.sprite=CCSprite.sprite(filePath);
+		}
+		catch(Exception e){
+			Log.v("log","filePath");
+		}
+		this.sprite.setAnchorPoint(0,0);
+		this.sprite.setPosition(positionX*CommonItem.SIZE_RATE_X,positionY*CommonItem.SIZE_RATE_Y);
+		this.sprite.setScaleY(CommonItem.SIZE_RATE_Y);
+		this.sprite.setScaleX(CommonItem.SIZE_RATE_X);
+		sprite.setVisible(isVisible);
+		this.textTureWidth=(int)sprite.getTexture().getWidth();
+		this.textTureHeight=(int)sprite.getTexture().getHeight();
+		this.collisionRect=new Rectangle(this.sprite.getPosition().x,this.sprite.getPosition().y,this.textTureWidth*CommonItem.SIZE_RATE_X,this.textTureHeight*CommonItem.SIZE_RATE_X);
+		Log.v("log","rate:"+CommonItem.SIZE_RATE_Y+"visible:"+sprite.getVisible());
+	}
+	public MySprite(String filePath,Boolean isVisible,int positionX,int positionY,int spriteFrameX,int spriteFrameY)
+	{
+		
+		try{
+			this.sprite=CCSprite.sprite(filePath);
+		}
+		catch(Exception e){
+			Log.v("log","filePath");
+		}
+		this.sprite.setAnchorPoint(0,0);
+		this.sprite.setPosition(positionX*CommonItem.SIZE_RATE_X,positionY*CommonItem.SIZE_RATE_Y);
+		this.sprite.setScaleY(CommonItem.SIZE_RATE_Y);
+		this.sprite.setScaleX(CommonItem.SIZE_RATE_X);
+		sprite.setVisible(isVisible);
+		this.textTureWidth=(int)sprite.getTexture().getWidth()/spriteFrameX;
+		this.textTureHeight=(int)sprite.getTexture().getHeight()/spriteFrameY;
+		sprite.setTextureRect(0, 0, this.textTureWidth, this.textTureHeight, false);
+	}
+	public void setPosition(int x, int y) {
+		this.sprite.setPosition(x, y);
+    }
+	public void fixedSizeRate(float rate) {
+		this.sprite.setScaleY(CommonItem.SIZE_RATE_Y*rate);
+		this.sprite.setScaleX(CommonItem.SIZE_RATE_X*rate);
+    }
+	public void setVisible(Boolean isVisible) {
+		this.sprite.setVisible(isVisible);
+    }
+	public Boolean getVisible() {
+		return this.sprite.getVisible();
+    }
+	public void rectUpdate()
+	{
+	    this.sprite.setTextureRect(this.currentFrameX* this.textTureWidth,this.currentFrameY*this.textTureHeight,this.textTureWidth,this.textTureHeight,false);
+	}
+	
+}

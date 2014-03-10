@@ -1,0 +1,22 @@
+package com.example.draganddrop;
+
+import org.cocos2d.types.CGPoint;
+
+public class Number {
+     MySprite num1;
+     MySprite num2;
+	public Number(int number,int size,CGPoint position)
+	{
+	   num1=new MySprite("stageNumber.png",false,position,11,1);
+	   num2=new MySprite("stageNumber.png",false,CGPoint.make(position.x+num1.textTureWidth, position.y),11,1);
+	}
+	public void setNumber(int num)
+	{
+       if(num<10)
+       {
+    	  num1.setVisible(true);
+    	  num1.currentFrameX=num;
+       }
+       if()
+	}
+}

@@ -1,0 +1,6 @@
+package com.example.draganddrop;
+
+public class Card {
+     Boolean isTouched=false;
+     MySprite cardSprite;
+}
