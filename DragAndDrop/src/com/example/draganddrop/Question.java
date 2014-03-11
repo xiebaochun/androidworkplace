@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import org.cocos2d.nodes.CCLabel;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -13,9 +14,11 @@ import android.util.Xml;
 
 public class Question {
 	
-	
+	CCLabel text_;
+	MyQuestion myQuestion;
     public Question(MainActivity activity)
     {
+        myQuestion=new MyQuestion();    	
     	//xmlpullparser parser = Xml.newPullParser();
     	XmlPullParserFactory pullParserFactory;
 		try {
@@ -73,12 +76,19 @@ public class Question {
 //
 //        printProducts(products);
 	}
-<<<<<<< HEAD
- 
-=======
-  public class MyQuestion{
-	  public 
-  }
->>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
+	//inner class
+	 class MyQuestion{
+
+		 level level1;
+		 level level2;
+		 level level3;
+	    class level
+	    {
+	       String redCardText;
+	       String blueCardText;
+	       String greenCardText;
+	    }
+	} 
     
 }
+

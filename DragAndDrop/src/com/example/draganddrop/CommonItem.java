@@ -22,13 +22,10 @@ public class CommonItem {
 	public static GameLayer gameLayer;
 	public static  float fixedSizeRate=(float)1280/2500;
 	
-<<<<<<< HEAD
 	public static Card[]  redCards=new Card[5];
 	public static Card[]  blueCards=new Card[5];
 	public static Card[]  greenCards=new Card[5];
 	
-=======
->>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	    
 	
 }

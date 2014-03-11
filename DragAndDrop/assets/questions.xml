@@ -1,18 +1,22 @@
 <Node>
 	<redCard>
-		<question level=1>請選出紅色方塊！</question>
-    	<question level=2>請將紅色方塊按從小到大的順序排列在左上角！</question>
-    	<question level=3>請將紅色方塊按從小到大的順序排列在左上角！</question>
+		<question>
+		     <level1>請選出紅色方塊！</level1>
+    	    <level2>請將紅色方塊按從小到大的順序排列在左上角！</level2>
+         	<level3>請將紅色方塊按從小到大的順序排列在左上角！</level3>
+    	</question>
     	
 	</redCard>
     <blueCard>
-    	<question level=1>請選出蓝色方塊！</question>
-    	<question level=2>請將蓝色方塊按從小到大的順序排列在左上角！</question>
-    	<question level=3>請將蓝色方塊按從小到大的順序排列在左上角！</question>
+        <question>
+		     <level1>請選出蓝色方塊！</level1>
+    	    <level2>請將蓝色方塊按從小到大的順序排列在左上角！</level2>
+         	<level3>請將蓝色方塊按從小到大的順序排列在左上角！</level3>
+    	</question>
     </blueCard>
     <greenCard>
-    	<question level=1>請選出绿色方塊！</question>
-    	<question level=2>請將绿色方塊按從小到大的順序排列在左上角！</question>
-    	<question level=3>請將绿色方塊按從小到大的順序排列在左上角！</question>
-    </greenCard>
+          <level1>請選出绿色方塊！</level1>
+    	    <level2>請將绿色方塊按從小到大的順序排列在左上角！</level2>
+         	<level3>請將绿色方塊按從小到大的順序排列在左上角！</level3>
+   </greenCard>
 </Node>

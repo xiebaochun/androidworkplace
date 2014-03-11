@@ -1,10 +1,11 @@
 package com.example.draganddrop;
 
-<<<<<<< HEAD
 import org.cocos2d.menus.CCMenu;
 import org.cocos2d.menus.CCMenuItemImage;
 import org.cocos2d.nodes.CCNode;
 import org.cocos2d.types.CGPoint;
+
+import android.util.Log;
 
 
 public class Button extends CCNode{
@@ -15,6 +16,7 @@ public class Button extends CCNode{
 	 	public float fixSizeRate=1;
 	 	public Rectangle collisionRect;
 	 	public Boolean isClicked=false;
+	    String name="none name";
      public Button(String normalImage,String selectedImage,CGPoint position,Boolean isVisible)
      {
     	 sprite=CCMenuItemImage.item(normalImage, selectedImage, this, "clickCallBack");
@@ -32,14 +34,16 @@ public class Button extends CCNode{
 		 menu.addChild(sprite,1,1);
   		 
     	 this.addChild(menu,1,1);
-    	 
+    	 this.setVisible(isVisible);
     	 this.setPosition(position.x*CommonItem.SIZE_RATE_X, position.y*CommonItem.SIZE_RATE_Y);
- 		this.setVisible(isVisible);
+ 		
  		this.collisionRect=new Rectangle(this.getPosition().x,this.getPosition().y,this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate,this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate);
     	 CommonItem.gameLayer.addChild(this,0);
+    	 this.name=normalImage;
      }
      public Button(String normalImage,Boolean isVisible,CGPoint position,int z)
      {
+    	 try{
     	 sprite=CCMenuItemImage.item(normalImage, normalImage, this, "clickCallBack");
     	 sprite.setAnchorPoint(0,0);
     	 this.setAnchorPoint(0,0);
@@ -56,9 +60,16 @@ public class Button extends CCNode{
   		 
     	 this.addChild(menu,1,1);
     	 this.setPosition(position.x*CommonItem.SIZE_RATE_X, position.y*CommonItem.SIZE_RATE_Y);
- 		this.setVisible(isVisible);
- 		this.collisionRect=new Rectangle(this.getPosition().x,this.getPosition().y,this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate,this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate);
+ 		 
+ 		 this.collisionRect=new Rectangle(this.getPosition().x,this.getPosition().y,this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate,this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate);
     	 CommonItem.gameLayer.addChild(this,z);
+    	 this.setVisible(isVisible);
+    	 this.name=normalImage;
+    	 }
+    	 catch(Exception e)
+    	 {
+    		 Log.v("log","Button Load:"+normalImage);
+    	 }
      }
      public void fixedSizeRate(float rate) {
   		fixSizeRate=rate;
@@ -68,14 +79,22 @@ public class Button extends CCNode{
       }
      public void clickCallBack(Object sender)
      {
-    	 isClicked=true;
-=======
-import org.cocos2d.menus.CCMenuItemImage;
-
-public class Button extends CCMenuItemImage{
-     public Button()
+    	 this.isClicked=true;
+    	 Log.v("touchState","clicked!"+this.name);
+     }
+     public void mySetVisible(Boolean isVisible)
      {
-    	 super();
->>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
+    	 this.setVisible(isVisible);
+    	 this.sprite.setVisible(isVisible);
+//         if(isVisible==true)
+//         {
+//        	 this.getParent().reorderChild(this, 0);
+//        	 this.reorderChild(sprite, 1);
+//         }
+//         else
+//         {
+//        	 this.getParent().reorderChild(this, -6);
+//        	 this.reorderChild(sprite, 1);
+//         }
      }
 }
