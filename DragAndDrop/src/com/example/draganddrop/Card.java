@@ -45,6 +45,28 @@ public class Card extends CCNode{
      }
      public void clickCallback(Object sender)
      {
+<<<<<<< HEAD
+    	 for(Card card:CommonItem.redCards)
+    	 {
+    		 if(card.getVisible()==true&&card!=this)
+    		 {
+    			card.touchCount=0;
+    			card.isTouched=false;
+    			card.fixedSizeRate(CommonItem.fixedSizeRate);
+    		 }
+    	 }
+    	 this.touchCount++;
+			if(touchCount%2==1)
+				{
+				this.isTouched=true;
+				this.fixedSizeRate(0.6f);
+				}
+			else
+			{
+				this.isTouched=false;
+				this.fixedSizeRate(CommonItem.fixedSizeRate);
+				this.touchCount=0;
+=======
     	 touchCount++;
 			if(touchCount%2==1)
 				{
@@ -56,6 +78,7 @@ public class Card extends CCNode{
 				isTouched=false;
 				fixedSizeRate(CommonItem.fixedSizeRate);
 				touchCount=0;
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 			}
      }
      public void fixedSizeRate(float rate) {

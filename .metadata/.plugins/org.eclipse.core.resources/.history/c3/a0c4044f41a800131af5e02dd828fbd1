@@ -1,0 +1,16 @@
+package com.example.draganddrop;
+
+import org.cocos2d.menus.CCMenuItemImage;
+import org.cocos2d.nodes.CCNode;
+import org.cocos2d.types.CGPoint;
+
+
+public class Button extends CCNode{
+	public CCMenuItemImage menuItem;
+     public Button(String normalImage,String selectedImage,CCNode node,String clickCallBack,CGPoint position)
+     {
+    	 menuItem=CCMenuItemImage.item(normalImage, selectedImage, node, clickCallBack);
+    	 this.addChild(menuItem);
+    	 
+     }
+}

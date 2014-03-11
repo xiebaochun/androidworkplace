@@ -1,0 +1,101 @@
+package com.example.draganddrop;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.cocos2d.layers.CCColorLayer;
+import org.cocos2d.layers.CCLayer;
+import org.cocos2d.layers.CCScene;
+import org.cocos2d.nodes.CCDirector;
+import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.types.CGPoint;
+import org.cocos2d.types.CGSize;
+import org.cocos2d.types.ccColor4B;
+
+public class GameLayer extends CCColorLayer {
+
+	CCSprite backGround;
+	CCSprite stateBar;
+	CCSprite TimeBar;
+	CCSprite player;
+	CCSprite question;
+	CCSprite timeBar;
+	public int playerPositionX=0;
+	public int dt=1;
+	public final int QUESTION_POSITION_X=150;
+	public final int QUESTION_POSITION_Y=450;
+	public final int TIME_BAR_POSITION_X=280;
+	public final int TIME_BAR_POSITION_Y=602;
+	
+	public final float SIZE_RATE_X;
+	public final float SIZE_RATE_Y;
+	
+	public static CCScene scene()
+	{
+	    CCScene scene = CCScene.node();
+	    CCColorLayer layer = new GameLayer(ccColor4B.ccc4(255, 255, 255, 0));
+
+	 
+	    scene.addChild(layer);
+	 
+	    return scene;
+	}
+	protected GameLayer(ccColor4B color)
+	{
+	    super(color);
+	    CGSize winSize = CCDirector.sharedDirector().displaySize();
+	    SIZE_RATE_Y=winSize.height/768;
+	    SIZE_RATE_X=winSize.width/1280;
+	    player = CCSprite.sprite("Player.png");
+	    question= CCSprite.sprite("question.png");
+	    backGround=CCSprite.sprite("bg_b.png");
+	    stateBar=CCSprite.sprite("StateBar.png");
+	    question=CCSprite.sprite("question.png");
+	    timeBar=CCSprite.sprite("TimeBar.png");
+	   
+	    player.setAnchorPoint(0,0);
+	    
+	    //player.setPosition(CGPoint.ccp(winSize.width / 2.0f, winSize.height / 2.0f));
+	    
+	    player.setPosition(0, 0);
+	    backGround.setPosition(0,0);
+	    stateBar.setPosition(15*SIZE_RATE_X,555*SIZE_RATE_Y);
+	    question.setPosition(QUESTION_POSITION_X*SIZE_RATE_X,QUESTION_POSITION_Y*SIZE_RATE_Y);
+	    timeBar.setPosition(TIME_BAR_POSITION_X*SIZE_RATE_X,TIME_BAR_POSITION_Y*SIZE_RATE_Y);
+	   
+	    initilizeSprite(backGround);
+	    initilizeSprite(stateBar);
+	    initilizeSprite(timeBar);
+	    initilizeSprite(question,(float)1280/2500);
+	    
+	    addChild(player);
+	    addChild(backGround,-5);
+	    addChild(stateBar,-4);
+	    addChild(question,-4);
+	    addChild(timeBar,-3);
+	    Timer timer=new Timer();
+	    timer.scheduleAtFixedRate( new TimerTask(){
+			public void run() {
+				gameUpdate();
+			}
+		}, 0, (long)(1000/60) );
+	   // schedule("gameUpdate");
+	}
+	private void initilizeSprite(CCSprite sp,float fixedSizeRate) {
+		sp.setScaleY(SIZE_RATE_Y*fixedSizeRate);
+	    sp.setScaleX(SIZE_RATE_X*fixedSizeRate);
+	    sp.setAnchorPoint(0,0);
+	}
+	private void initilizeSprite(CCSprite sp) {
+		sp.setScaleY(SIZE_RATE_Y);
+	    sp.setScaleX(SIZE_RATE_X);
+	    sp.setAnchorPoint(0,0);
+	}
+	public void gameUpdate() {
+		playerPositionX+=dt;
+		player.setPosition(playerPositionX, 0);
+		if(playerPositionX>=1500)dt=-1;
+		if(playerPositionX<0)dt=1;
+		
+	}
+}

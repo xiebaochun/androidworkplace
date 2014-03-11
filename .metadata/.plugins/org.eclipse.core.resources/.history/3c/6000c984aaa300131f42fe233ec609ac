@@ -1,0 +1,77 @@
+package com.example.draganddrop;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.cocos2d.layers.CCColorLayer;
+import org.cocos2d.layers.CCLayer;
+import org.cocos2d.layers.CCScene;
+import org.cocos2d.nodes.CCDirector;
+import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.types.CGPoint;
+import org.cocos2d.types.CGSize;
+import org.cocos2d.types.ccColor4B;
+
+public class GameLayer extends CCColorLayer {
+
+	CCSprite backGround;
+	CCSprite stateBar;
+	CCSprite TimeBar;
+	CCSprite player;
+	CCSprite question;
+	public int playerPositionX=0;
+	public int dt=1;
+	public final float SIZE_RATE;
+	public static CCScene scene()
+	{
+	    CCScene scene = CCScene.node();
+	    CCColorLayer layer = new GameLayer(ccColor4B.ccc4(255, 255, 255, 0));
+
+	 
+	    scene.addChild(layer);
+	 
+	    return scene;
+	}
+	protected GameLayer(ccColor4B color)
+	{
+	    super(color);
+	    CGSize winSize = CCDirector.sharedDirector().displaySize();
+	    SIZE_RATE=winSize.height/768;
+	    player = CCSprite.sprite("Player.png");
+	    question= CCSprite.sprite("question.png");
+	    backGround=CCSprite.sprite("bg_b.png");
+	    stateBar=CCSprite.sprite("StateBar.png");
+	    
+	    backGround.setAnchorPoint(0,0);
+	    player.setAnchorPoint(0,0);
+	    stateBar.setAnchorPoint(0,0);
+	    //player.setPosition(CGPoint.ccp(winSize.width / 2.0f, winSize.height / 2.0f));
+	    
+	    player.setPosition(0, 0);
+	    backGround.setPosition(0,0);
+	    stateBar.setPosition(10*SIZE_RATE,550*SIZE_RATE);
+	    
+	    backGround.setScaleY(SIZE_RATE);
+	    backGround.setScaleX(SIZE_RATE);
+	    stateBar.setScaleY(SIZE_RATE);
+	    stateBar.setScaleX(SIZE_RATE);
+	    
+	    addChild(player);
+	    addChild(backGround,-5);
+	    addChild(stateBar,-4);
+	    Timer timer=new Timer();
+	    timer.scheduleAtFixedRate( new TimerTask(){
+			public void run() {
+				gameUpdate();
+			}
+		}, 0, (long)(1000/60) );
+	   // schedule("gameUpdate");
+	}
+	public void gameUpdate() {
+		playerPositionX+=dt;
+		player.setPosition(playerPositionX, 0);
+		if(playerPositionX>=1500)dt=-1;
+		if(playerPositionX<0)dt=1;
+		
+	}
+}

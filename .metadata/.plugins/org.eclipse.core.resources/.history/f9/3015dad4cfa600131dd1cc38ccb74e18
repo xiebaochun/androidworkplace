@@ -1,0 +1,36 @@
+package com.example.draganddrop;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.cocos2d.menus.CCMenu;
+import org.cocos2d.menus.CCMenuItemImage;
+import org.cocos2d.nodes.CCNode;
+import org.cocos2d.types.CGPoint;
+
+import com.vidicorp.puzzle.CCNodeExt;
+
+public class Card extends CCNode{
+	 CCMenuItemImage eachItem;
+	 CCMenu menu;
+     int touchCount=0;
+     Boolean isTouched=false;
+     public Card(String filePath,Boolean isVisible,CGPoint position)
+     {
+    	 //super( filePath,isVisible, position,-4);
+    	 eachItem=CCMenuItemImage.item(filePath, filePath,CommonItem.gameLayer, "clickCallback");
+    	 eachItem.setContentSize(eachItem.getContentSize().width  , eachItem.getContentSize().height);
+    	 menu= CCMenu.menu() ;
+    	 menu.setContentSize(eachItem.getContentSize()) ;
+    	 menu.setPosition(0,0);
+		 menu.addChild(eachItem,1,1);
+		 
+		this.setContentSize(eachItem.getContentSize());
+		this.addChild(menu,1,1);
+		this.setPosition(position.x*CommonItem.SIZE_RATE_X, position.y*CommonItem.SIZE_RATE_Y);
+     }
+     public void clickCallback(Object sender)
+     {
+    	 isTouched=true;
+     }
+}

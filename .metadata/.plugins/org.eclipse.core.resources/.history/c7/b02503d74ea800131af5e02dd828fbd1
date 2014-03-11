@@ -1,0 +1,57 @@
+package com.example.draganddrop;
+
+import org.cocos2d.menus.CCMenuItemImage;
+import org.cocos2d.nodes.CCNode;
+import org.cocos2d.types.CGPoint;
+
+
+public class Button extends CCNode{
+	public CCMenuItemImage sprite;
+	 public int textTureWidth;
+	 	public int textTureHeight;
+	 	public float fixSizeRate=1;
+	 	public Rectangle collisionRect;
+	 	public Boolean isClicked=false;
+     public Button(String normalImage,String selectedImage,CGPoint position,Boolean isVisible)
+     {
+    	 sprite=CCMenuItemImage.item(normalImage, selectedImage, this, "clickCallBack");
+    	 this.textTureWidth=(int)sprite.getContentSize().width;
+ 		 this.textTureHeight=(int)sprite.getContentSize().height;
+    	 this.sprite.setScaleY(CommonItem.SIZE_RATE_Y*fixSizeRate);
+ 		 this.sprite.setScaleX(CommonItem.SIZE_RATE_X*fixSizeRate);
+ 		 
+  		 sprite.setContentSize(sprite.getContentSize().width  , sprite.getContentSize().height);
+  		 
+    	 this.addChild(sprite,1,1);
+    	 this.setPosition(position.x*CommonItem.SIZE_RATE_X, position.y*CommonItem.SIZE_RATE_Y);
+ 		this.setVisible(isVisible);
+ 		this.collisionRect=new Rectangle(this.getPosition().x,this.getPosition().y,this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate,this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate);
+    	 CommonItem.gameLayer.addChild(this,0);
+     }
+     public Button(String normalImage,Boolean isVisible,CGPoint position,int z)
+     {
+    	 sprite=CCMenuItemImage.item(normalImage, selectedImage, this, "clickCallBack");
+    	 this.textTureWidth=(int)sprite.getContentSize().width;
+ 		 this.textTureHeight=(int)sprite.getContentSize().height;
+    	 this.sprite.setScaleY(CommonItem.SIZE_RATE_Y*fixSizeRate);
+ 		 this.sprite.setScaleX(CommonItem.SIZE_RATE_X*fixSizeRate);
+ 		 
+  		 sprite.setContentSize(sprite.getContentSize().width  , sprite.getContentSize().height);
+  		 
+    	 this.addChild(sprite,1,1);
+    	 this.setPosition(position.x*CommonItem.SIZE_RATE_X, position.y*CommonItem.SIZE_RATE_Y);
+ 		this.setVisible(isVisible);
+ 		this.collisionRect=new Rectangle(this.getPosition().x,this.getPosition().y,this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate,this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate);
+    	 CommonItem.gameLayer.addChild(this,0);
+     }
+     public void fixedSizeRate(float rate) {
+  		fixSizeRate=rate;
+  		this.sprite.setScaleY(CommonItem.SIZE_RATE_Y*fixSizeRate);
+  		this.sprite.setScaleX(CommonItem.SIZE_RATE_X*fixSizeRate);
+  		this.collisionRect=new Rectangle(this.getPosition().x-this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate/2,this.getPosition().y-this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate/2,this.textTureWidth*CommonItem.SIZE_RATE_X*fixSizeRate,this.textTureHeight*CommonItem.SIZE_RATE_X*fixSizeRate);
+      }
+     public void clickCallback(Object sender)
+     {
+    	 isClicked=true;
+     }
+}
