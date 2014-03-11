@@ -16,9 +16,9 @@
 		<item value="68" key="DIALOG_Y_ORIGIN"/>
 		<item value="203" key="DIALOG_X_ORIGIN"/>
 	</section>
-	<section name="ZipFileImportWizard">
-	</section>
 	<section name="NewWizardAction">
+	</section>
+	<section name="ZipFileImportWizard">
 	</section>
 	<section name="ImportExportAction">
 		<item value="com.android.ide.eclipse.adt.project.ImportProjectWizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
