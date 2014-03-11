@@ -3,25 +3,28 @@ package com.example.draganddrop;
 import org.cocos2d.layers.CCScene;
 import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.opengl.CCGLSurfaceView;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	protected CCGLSurfaceView _glSurfaceView;
+	protected MySurfaceView _glSurfaceView;
+	Question question;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 
+		 question=new Question(this);
 	    requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	 
-	    _glSurfaceView = new CCGLSurfaceView(this);
+	    _glSurfaceView = new MySurfaceView(this);
 	 
 	    setContentView(_glSurfaceView);
 	}
@@ -68,5 +71,6 @@ public class MainActivity extends Activity {
 	 
 	    CCDirector.sharedDirector().end();
 	}
+	
 
 }

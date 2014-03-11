@@ -1,0 +1,11 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCSprite;
+
+public class MySprite extends CCSprite{
+	
+	@Override
+	public static CCSprite sprite(String filepath) {
+        return new CCSprite(filepath);
+    }
+}

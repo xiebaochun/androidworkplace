@@ -9,4 +9,15 @@
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="org.cocos2d.layers.CCColorLayer"/>
+<fullyQualifiedTypeName name="org.cocos2d.types.ccColor4B"/>
+<fullyQualifiedTypeName name="java.util.Timer"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="org.cocos2d.nodes.CCSprite"/>
+<fullyQualifiedTypeName name="org.cocos2d.nodes.CCLabel"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.R.string"/>
+<fullyQualifiedTypeName name="org.cocos2d.nodes.CCNode"/>
+<fullyQualifiedTypeName name="org.cocos2d.menus.CCMenuItemImage"/>
+<fullyQualifiedTypeName name="org.cocos2d.types.CGPoint"/>
 </qualifiedTypeNameHistroy>

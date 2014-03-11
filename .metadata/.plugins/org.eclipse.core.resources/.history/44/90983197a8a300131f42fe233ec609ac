@@ -1,0 +1,8 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCSprite;
+
+public class MySprite extends CCSprite{
+	
+       
+}

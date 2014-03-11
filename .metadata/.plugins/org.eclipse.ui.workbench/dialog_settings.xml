@@ -16,6 +16,12 @@
 		<item value="68" key="DIALOG_Y_ORIGIN"/>
 		<item value="203" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="ZipFileImportWizard">
+		<item value="false" key="WizardZipFileResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
+		<list key="WizardZipFileResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="J:\github\androidworkplace\DragAndDrop\libs\cocos2d-android.jar"/>
+		</list>
+	</section>
 	<section name="NewWizardAction">
 	</section>
 	<section name="ImportExportAction">
