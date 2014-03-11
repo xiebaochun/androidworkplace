@@ -21,6 +21,7 @@ import com.example.draganddrop.CommonItem.TouchState;
 
 import android.util.Log;
 import android.view.MotionEvent;
+<<<<<<< HEAD
 
 public class GameLayer extends CCColorLayer {
     
@@ -39,11 +40,34 @@ public class GameLayer extends CCColorLayer {
 	public final CGPoint GAME_START_POSITION=CGPoint.make(430,216);
 	public final CGPoint CONFIRM_BUTTON_POSITION=CGPoint.make(1000,23);
 	
+=======
+
+public class GameLayer extends CCColorLayer {
+    
+	public enum GameState{start,play,over};
+	public GameState gamestate=GameState.start;
+	public int playerPositionX=0;
+	public int timeTick=0;
+	public int timeSeconedTick=0;
+	public int eachStageTime=60;
+	public int stage=1;
+	public int level=1;
+	public int score=0;
+	public int target=10;
+	public final CGPoint QUESTION_POSITION=CGPoint.make(150,450);
+	public final CGPoint TIME_BAR_POSITION=CGPoint.make(280,605);
+	public final CGPoint GAME_START_POSITION=CGPoint.make(430,216);
+
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	public final int TIME_BAR_HEIGHT=40;
 	public final int TIME_BAR_WIDTH=768;
 	 public final int EACH_CARDS_COUNT=5;
 	public CGPoint touchPoint;
+<<<<<<< HEAD
 	public Boolean isGamePause=false;
+=======
+	public Boolean isGamePause=true;
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	public Boolean goToPrepare=true;
 	MySprite backGround;
 	MySprite stateBar;
@@ -51,10 +75,17 @@ public class GameLayer extends CCColorLayer {
 	//MySprite player;
 	MySprite question_image;
 	MySprite timeBar;
+<<<<<<< HEAD
 //	Button gameStart;
 //	Button replay;
 //	Button pass;
 	Button confirm_bt;
+=======
+	MySprite gameStart;
+	MySprite replay;
+	MySprite pass;
+    
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	//MySprite number;
 	MySprite[] answers=new MySprite[5];
     Number score_num;
@@ -62,7 +93,13 @@ public class GameLayer extends CCColorLayer {
     Number target_num;
     //CCLabel test_label;
     
+<<<<<<< HEAD
     
+=======
+    Card[]  redCards=new Card[5];
+    Card[]  blueCards=new Card[5];
+    Card[]  greenCards=new Card[5];
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
     CGPoint[] CardsPosition=new CGPoint[10];
     CGPoint[] AnswersPosition=new CGPoint[5];
 	public static CCScene scene()
@@ -101,12 +138,19 @@ public class GameLayer extends CCColorLayer {
 	    target_num.setNumber(target);
 	    timeBar=new MySprite("TimeBar.png",true,TIME_BAR_POSITION,-3);
 	    
+<<<<<<< HEAD
 //	    gameStart=new Button("GameStart.png",true,GAME_START_POSITION,0);
 //	    replay=new Button("replay.png",false,GAME_START_POSITION,0);
 //	    pass=new Button("Continue.png",false,GAME_START_POSITION,0);
 	    
 	    confirm_bt=new Button("confirm.png","confirm.png",CONFIRM_BUTTON_POSITION,true);
 	    confirm_bt.fixedSizeRate(CommonItem.fixedSizeRate);
+=======
+	    gameStart=new MySprite("GameStart.png",true,GAME_START_POSITION,0);
+	    replay=new MySprite("replay.png",false,GAME_START_POSITION,0);
+	    pass=new MySprite("Continue.png",false,GAME_START_POSITION,0);
+	    
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	   // number=new MySprite("stageNumber.png",true,CGPoint.zero(),11,1,-3);
 	  //preapare cards position
 	    for(int i=0;i<2*5;i++)
@@ -159,7 +203,11 @@ public class GameLayer extends CCColorLayer {
 		    cardSprite.fixedSizeRate(CommonItem.fixedSizeRate);
 		    
 	   		try{
+<<<<<<< HEAD
 	   			CommonItem.redCards[i]=cardSprite;
+=======
+	   		redCards[i]=cardSprite;
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	   		}catch(Exception e){
 	   			Log.v("log","error:"+e);
 	   		}
@@ -169,14 +217,22 @@ public class GameLayer extends CCColorLayer {
 	   	 for(int i=0;i<EACH_CARDS_COUNT;i++)
 	   	 {
 	   		Card cardSprite=new Card("blue-"+(i+1)+".png",false,CGPoint.zero());
+<<<<<<< HEAD
 	   		CommonItem.blueCards[i]=cardSprite;
+=======
+	   		blueCards[i]=cardSprite;
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	   		cardSprite.fixedSizeRate(CommonItem.fixedSizeRate);
 	   		
 	   	 }
 	   	 for(int i=0;i<EACH_CARDS_COUNT;i++)
 	   	 {
 	   		Card cardSprite=new Card("green-"+(i+1)+".png",false,CGPoint.zero());
+<<<<<<< HEAD
 	   		CommonItem.greenCards[i]=cardSprite;
+=======
+	   		greenCards[i]=cardSprite;
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	   		cardSprite.fixedSizeRate(CommonItem.fixedSizeRate);
 	   		
 	   	 }
@@ -197,11 +253,19 @@ public class GameLayer extends CCColorLayer {
 		//test_label.setString("currenTouch: "+CommonItem.currenTouchState+"  preCurrentTouch:"+CommonItem.preTouchState+"  touchState: "+CommonItem.touchState+"  xy: "+touchPoint);
 
 		
+<<<<<<< HEAD
 //		if(tap())
 //		{
 //			stage++;
 //			stage_num.setNumber(stage);
 //		}
+=======
+		if(tap())
+		{
+			stage++;
+			stage_num.setNumber(stage);
+		}
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 		switch(gamestate)
 		{
 		   case start:
@@ -239,6 +303,7 @@ public class GameLayer extends CCColorLayer {
 	}
 	private void cardsPositionUpdate() {
 		
+<<<<<<< HEAD
 		for(int i=0;i<CommonItem.redCards.length;i++)
 		{
 			if(CommonItem.redCards[i].getVisible()==true)
@@ -253,6 +318,22 @@ public class GameLayer extends CCColorLayer {
 					{
 					///redCards[i].setPosition(CommonItem.touchPoint.x-50,CommonItem.touchPoint.y-50);
 						CommonItem.redCards[i].setPosition((CommonItem.touchPoint.x),(CommonItem.touchPoint.y));
+=======
+		for(int i=0;i<redCards.length;i++)
+		{
+			if(redCards[i].getVisible()==true)
+			{
+				redCards[i].collisionRectUpdate();
+				
+
+				if(redCards[i].isTouched==true)
+				{
+					
+					if(redCards[i].collisionRect.contains(CommonItem.touchPoint)&&CommonItem.currenTouchState==CommonItem.TouchState.move)
+					{
+					///redCards[i].setPosition(CommonItem.touchPoint.x-50,CommonItem.touchPoint.y-50);
+					  redCards[i].setPosition((CommonItem.touchPoint.x),(CommonItem.touchPoint.y));
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 				    
 					}
 				}
@@ -263,14 +344,21 @@ public class GameLayer extends CCColorLayer {
 	private void prepareCards() {
 		for(int i=0;i<=4;i++)
 		{
+<<<<<<< HEAD
 			CommonItem.redCards[i].setPosition_ds(CardsPosition[i]);
 			CommonItem.redCards[i].setVisible(true);
 			Log.v("log","redCards[i].getVisible:"+CommonItem.redCards[i].getVisible());
+=======
+			redCards[i].setPosition_ds(CardsPosition[i]);
+			redCards[i].setVisible(true);
+			Log.v("log","redCards[i].getVisible:"+redCards[i].getVisible());
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 		}
 		for(MySprite sp:answers)
 		{
 			sp.setVisible(true);
 		}
+<<<<<<< HEAD
 	}
 	private void prepareQuestion() {
 		// TODO Auto-generated method stub
@@ -318,6 +406,53 @@ public class GameLayer extends CCColorLayer {
 //			  score_num.setNumber(score);
 //		  }
 //		}
+=======
+	}
+	private void prepareQuestion() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void spriteRectAndeventUpdate() {
+		if(gameStart.getVisible()==true)
+		{
+			
+		  if(tap()&&gameStart.collisionRect.contains(touchPoint))
+		  {
+			  
+			  gameStart.setVisible(false);
+			  isGamePause=false;
+		  }
+		}
+		if(pass.getVisible()==true)
+		{
+			
+		  if(tap()&&pass.collisionRect.contains(touchPoint))
+		  {
+			  
+			  pass.setVisible(false);
+			  isGamePause=false;
+			  stage++;
+			  stage_num.setNumber(stage);
+			  score=0;
+			  score_num.setNumber(score);
+			  target++;
+			  target_num.setNumber(target);
+			  goToNextStage();
+		  }
+		}
+		if(replay.getVisible()==true)
+		{
+			
+		  if(tap()&&replay.collisionRect.contains(touchPoint))
+		  {
+			  
+			  replay.setVisible(false);
+			  isGamePause=false;
+			  score=0;
+			  score_num.setNumber(score);
+		  }
+		}
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 		
 	}
 	//ready next stage things 
@@ -326,6 +461,7 @@ public class GameLayer extends CCColorLayer {
 		
 	}
 	//if is tap in screen
+<<<<<<< HEAD
 //	private boolean tap() {
 //		if(CommonItem.currenTouchState==CommonItem.TouchState.up&&CommonItem.preTouchState==CommonItem.TouchState.down)//&&CommonItem.currenTouchState==CommonItem.TouchState.up)
 //		{
@@ -337,6 +473,19 @@ public class GameLayer extends CCColorLayer {
 //		}
 //		return false;
 //	}
+=======
+	private boolean tap() {
+		if(CommonItem.currenTouchState==CommonItem.TouchState.up&&CommonItem.preTouchState==CommonItem.TouchState.down)//&&CommonItem.currenTouchState==CommonItem.TouchState.up)
+		{
+			score++;
+			score_num.setNumber(score);
+			Log.v("touchState","tap");
+			Log.v("touchState","pisition:"+touchPoint.toString());
+			return true;
+		}
+		return false;
+	}
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	public void timeUpdate() {
 		timeTick++;
 		
@@ -352,17 +501,28 @@ public class GameLayer extends CCColorLayer {
 			   isGamePause=true;
 			   if(score>=target)
 			   {
+<<<<<<< HEAD
 //				   pass.setVisible(true);
 			   }
 			   else
 			   {
 //				   replay.setVisible(true);
+=======
+				   pass.setVisible(true);
+			   }
+			   else
+			   {
+				   replay.setVisible(true);
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 			   }
 		   }
 		   timeBar.sprite.setTextureRect(0, 0, ((float)(eachStageTime-timeSeconedTick)/eachStageTime)*TIME_BAR_WIDTH,40 , false);
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 		//@Override
         public boolean ccTouchesBegan(MotionEvent event) {
             CGPoint convertedLocation = CCDirector.sharedDirector()

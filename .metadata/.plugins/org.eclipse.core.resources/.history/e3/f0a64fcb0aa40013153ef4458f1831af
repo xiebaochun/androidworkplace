@@ -1,0 +1,6 @@
+package com.example.draganddrop;
+
+public class CommonItem {
+	public static float SIZE_RATE_X;
+	public static  float SIZE_RATE_Y;
+}

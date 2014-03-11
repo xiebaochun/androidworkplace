@@ -73,6 +73,12 @@ public class Question {
 //
 //        printProducts(products);
 	}
+<<<<<<< HEAD
  
+=======
+  public class MyQuestion{
+	  public 
+  }
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
     
 }

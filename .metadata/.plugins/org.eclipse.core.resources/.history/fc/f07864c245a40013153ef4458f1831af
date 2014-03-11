@@ -1,0 +1,10 @@
+package com.example.draganddrop;
+
+import org.cocos2d.opengl.CCGLSurfaceView;
+
+public class MySurfaceView extends CCGLSurfaceView{
+     public MySurfaceView()
+     {
+    	 
+     }
+}

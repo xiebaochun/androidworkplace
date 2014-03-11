@@ -1,0 +1,21 @@
+package com.example.draganddrop;
+
+import java.util.ArrayList;
+
+import org.cocos2d.types.CGPoint;
+
+public class Card {
+     Boolean isTouched=false;
+     List<MySprite>  cardSprite=new ArrayList<MySprite>();
+     public final int EACH_CARDS_COUNT=5;
+     public Card()
+     {
+    	 for(int i;i<EACH_CARDS_COUNT;i++)
+    	 {
+    		MySprite cardSprite=new MySprite(imagePath,false,CGPoint.zero());
+    		
+    	 }
+    	 
+    	 
+     }
+}

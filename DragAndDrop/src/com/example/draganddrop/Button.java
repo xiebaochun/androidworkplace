@@ -1,5 +1,6 @@
 package com.example.draganddrop;
 
+<<<<<<< HEAD
 import org.cocos2d.menus.CCMenu;
 import org.cocos2d.menus.CCMenuItemImage;
 import org.cocos2d.nodes.CCNode;
@@ -68,5 +69,13 @@ public class Button extends CCNode{
      public void clickCallBack(Object sender)
      {
     	 isClicked=true;
+=======
+import org.cocos2d.menus.CCMenuItemImage;
+
+public class Button extends CCMenuItemImage{
+     public Button()
+     {
+    	 super();
+>>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
      }
 }

@@ -1,0 +1,13 @@
+package com.example.draganddrop;
+
+import org.cocos2d.types.CGPoint;
+
+public class Card {
+     Boolean isTouched=false;
+    MySprite[]  cardSprite;
+     public final int EACH_CARDS_COUNT=5;
+     public Card()
+     {
+    	 cardSprite=new MySprite(imagePath,false,CGPoint.zero());
+     }
+}

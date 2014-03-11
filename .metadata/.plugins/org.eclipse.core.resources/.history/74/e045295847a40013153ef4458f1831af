@@ -1,0 +1,54 @@
+package com.example.draganddrop;
+
+import org.cocos2d.opengl.CCGLSurfaceView;
+
+import android.content.Context;
+import android.view.MotionEvent;
+
+public class MySurfaceView extends CCGLSurfaceView{
+     
+	public MySurfaceView(Context context)
+     {
+    	 super(context);
+     }
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+//		TextView t=(TextView)findViewById(R.id.textView1);
+//		t.append("->onTouchEvent");
+		CommonItem.dt*=-1;
+		if (event.getAction()==MotionEvent.ACTION_DOWN)
+		{
+			
+			
+			 switch (event.getAction()) {
+		        case MotionEvent.ACTION_MOVE:
+		        	int x = (int)event.getX();
+					int y = (int)event.getY();
+		            float dx = x - mPreviousX;
+		            float dy = y - mPreviousY;
+
+		            // reverse direction of rotation above the mid-line
+		            if (y > getHeight() / 2) {
+		              dx = dx * -1 ;
+		            }
+
+		            // reverse direction of rotation to left of the mid-line
+		            if (x < getWidth() / 2) {
+		              dy = dy * -1 ;
+		            }
+
+		            mRenderer.setAngle(
+		                    mRenderer.getAngle() +
+		                    ((dx + dy) * TOUCH_SCALE_FACTOR);  // = 180.0f / 320
+		            requestRender();
+		    }
+//			if (rc.contains(x, y))
+//			{
+//				
+//			}
+			CommonItem.dt*=-1;
+		}
+		return super.onTouchEvent(event);
+	}
+}
