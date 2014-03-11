@@ -1,44 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.nio.channels.ReadableByteChannel"/>
-<fullyQualifiedTypeName name="java.nio.channels.Channels"/>
-<fullyQualifiedTypeName name="com.example.html5app.R.id"/>
-<fullyQualifiedTypeName name="com.example.html5app.R.string"/>
-<fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="com.example.camera.R.id"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
-<fullyQualifiedTypeName name="android.content.Intent"/>
-<<<<<<< HEAD
-<fullyQualifiedTypeName name="org.cocos2d.layers.CCColorLayer"/>
-<fullyQualifiedTypeName name="org.cocos2d.types.ccColor4B"/>
-<fullyQualifiedTypeName name="java.util.Timer"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="org.cocos2d.nodes.CCSprite"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="org.cocos2d.nodes.CCLabel"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
-<fullyQualifiedTypeName name="android.R.string"/>
-<fullyQualifiedTypeName name="org.cocos2d.nodes.CCNode"/>
-<fullyQualifiedTypeName name="org.cocos2d.menus.CCMenuItemImage"/>
-<fullyQualifiedTypeName name="org.cocos2d.types.CGPoint"/>
-=======
-<fullyQualifiedTypeName name="android.view.MotionEvent"/>
-<fullyQualifiedTypeName name="org.cocos2d.events.CCTouchDispatcher"/>
-<fullyQualifiedTypeName name="org.cocos2d.opengl.CCGLSurfaceView"/>
-<fullyQualifiedTypeName name="android.content.Context"/>
-<fullyQualifiedTypeName name="org.cocos2d.types.CGRect"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
-<fullyQualifiedTypeName name="com.example.draganddrop.CommonItem.TouchState"/>
-<fullyQualifiedTypeName name="com.example.draganddrop.CommonItem.TouchPoint"/>
-<fullyQualifiedTypeName name="org.cocos2d.types.CGPoint"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="android.util.Xml"/>
-<fullyQualifiedTypeName name="org.xmlpull.v1.XmlPullParserFactory"/>
-<fullyQualifiedTypeName name="org.xmlpull.v1.XmlPullParser"/>
-<fullyQualifiedTypeName name="org.xmlpull.v1.XmlPullParserException"/>
-<fullyQualifiedTypeName name="java.io.InputStream"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="org.cocos2d.menus.CCMenuItemImage"/>
->>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 </qualifiedTypeNameHistroy>

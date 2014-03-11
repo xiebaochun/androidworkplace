@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="2" key="TypeHierarchyViewPart.hierarchyview"/>
-	<item value="J:\github\androidworkplace\DragAndDrop\libs" key="org.eclipse.jdt.ui.lastextjar"/>
-	<item value="3" key="TypeHierarchyViewPart.orientation"/>
-	<item value="false" key="TypeHierarchyViewPart.qualifiednames"/>
-	<item value="false" key="TypeHierarchyViewPart.linkeditors"/>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
@@ -19,55 +14,33 @@
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
-<<<<<<< HEAD
-	<section name="BuildPathsPropertyPage">
-		<item value="2" key="pageIndex"/>
-	</section>
-=======
-<<<<<<< HEAD
-	<section name="BuildPathsPropertyPage">
-		<item value="2" key="pageIndex"/>
-=======
->>>>>>> 6c4eb0c0692109f2f7332b8f438e460aaaffe390
 	<section name="DialogBounds_GenerateToStringDialog">
 		<item value="516" key="DIALOG_WIDTH"/>
 		<item value="-47" key="DIALOG_Y_ORIGIN"/>
-		<item value="371" key="DIALOG_X_ORIGIN"/>
 		<item value="758" key="DIALOG_HEIGHT"/>
+		<item value="371" key="DIALOG_X_ORIGIN"/>
 		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
 	</section>
-<<<<<<< HEAD
-=======
 	<section name="BuildPathsPropertyPage">
 		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="quick_assist_proposal_size">
->>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
 	</section>
->>>>>>> 6c4eb0c0692109f2f7332b8f438e460aaaffe390
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
-		<item value="false" key="create_main"/>
 		<item value="true" key="create_unimplemented"/>
-	</section>
-	<section name="quick_assist_proposal_size">
-<<<<<<< HEAD
-=======
-	</section>
-	<section name="ClasspathContainerSelectionPage">
-		<item value="0" key="index"/>
->>>>>>> 6c4eb0c0692109f2f7332b8f438e460aaaffe390
+		<item value="false" key="create_main"/>
 	</section>
 	<section name="SourceActionDialog.methods">
 		<item value="false" key="SkipNull"/>
 		<item value="10" key="LimitValue"/>
-		<item value="0" key="StringStyle"/>
-		<item value="0" key="ToStringTemplateSelected"/>
-		<item value="1" key="VisibilityModifier"/>
 		<item value="false" key="Comments"/>
+		<item value="1" key="VisibilityModifier"/>
+		<item value="0" key="ToStringTemplateSelected"/>
+		<item value="0" key="StringStyle"/>
 		<item value="false" key="LimitElements"/>
 		<item value="false" key="SynchronizedModifier"/>
-		<item value="true" key="IgnoreDefault"/>
 		<item value="false" key="FinalModifier"/>
+		<item value="true" key="IgnoreDefault"/>
 	</section>
 </section>
