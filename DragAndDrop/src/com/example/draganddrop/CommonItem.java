@@ -1,5 +1,7 @@
 package com.example.draganddrop;
 
+import java.util.ArrayList;
+
 import org.cocos2d.types.CGPoint;
 
 public class CommonItem {
@@ -25,7 +27,8 @@ public class CommonItem {
 	public static Card[]  redCards=new Card[5];
 	public static Card[]  blueCards=new Card[5];
 	public static Card[]  greenCards=new Card[5];
+	public static ArrayList<Card>  allCards=new ArrayList<Card>();
 	
-	    
+	public static Question question;    
 	
 }

@@ -1,0 +1,32 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCLabel;
+import org.cocos2d.types.CGPoint;
+
+import android.util.Log;
+
+public class MyLabel {
+	public CCLabel label;
+	public MyLabel(String string,CGPoint position)
+	{
+		try{
+	    label=CCLabel.makeLabel(string, "Arial Black", 32);
+	      Log.v("log","Label load success!");
+		}catch(Exception e){
+			Log.v("log","Label load errror!");
+		}
+	    label.setAnchorPoint(0, 0);
+	    label.setPosition(position.x*CommonItem.SIZE_RATE_X,position.y*CommonItem.SIZE_RATE_Y);
+	    CommonItem.gameLayer.addChild(label,-0);
+	}
+	 public void setString(CharSequence seq) 
+	 {  
+		 try{
+	     this.label.setString(seq);
+	     Log.v("log","Label load success!");
+		 }catch(Exception e)
+		 {
+			 Log.v("log","label SetString errror!"+e);
+		 }
+	 }
+}

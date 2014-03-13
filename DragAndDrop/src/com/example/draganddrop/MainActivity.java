@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		 question=new Question(this);
+			CommonItem.question=question;
 	    requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -39,7 +40,7 @@ public class MainActivity extends Activity {
 	public void onStart()
 	{
 	    super.onStart();
-	 
+	   
 	    CCDirector.sharedDirector().attachInView(_glSurfaceView);
 	 
 	    CCDirector.sharedDirector().setDisplayFPS(true);

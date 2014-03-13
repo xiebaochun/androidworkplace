@@ -12,14 +12,19 @@ import android.util.Log;
 
 
 public class Card extends CCNode{
-	 CCMenuItemImage sprite;
-	 CCMenu menu;
-     int touchCount=0;
-     Boolean isTouched=false;
+	public CCMenuItemImage sprite;
+	 public CCMenu menu;
+	 public int touchCount=0;
+     public Boolean isTouched=false;
+    public Boolean isInAnswerPlace=false;
      public int textTureWidth;
  	public int textTureHeight;
  	public float fixSizeRate=1;
  	public Rectangle collisionRect;
+ 	public enum Style{red,blue,green};
+ 	public Style style;
+ 	public int id;
+ 	
      public Card(String filePath,Boolean isVisible,CGPoint position)
      {
     	 //super( filePath,isVisible, position,-4);

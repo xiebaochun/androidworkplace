@@ -1,0 +1,15 @@
+package com.example.draganddrop;
+
+import org.cocos2d.nodes.CCLabel;
+import org.cocos2d.types.CGPoint;
+
+public class MyLabel {
+	public CCLabel label;
+	public MyLabel(String string,CGPoint position)
+	{
+	    label=CCLabel.makeLabel(string, "Arial Black", 32);
+	    label.setAnchorPoint(0, 0);
+	    label.setPosition(position.x*CommonItem.SIZE_RATE_X,position.y*CommonItem.SIZE_RATE_Y);
+	    CommonItem.gameLayer.addChild(label,-4);
+	}
+}

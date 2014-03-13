@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=1b6f8192eddc9df3280975cd17f47dc7feb92817
 com.android.ide.eclipse.ddms.explorer.data=81
 com.android.ide.eclipse.ddms.explorer.info=83
 com.android.ide.eclipse.ddms.explorer.name=111
@@ -27,11 +30,7 @@ logcat.view.colsize.TID=58
 logcat.view.colsize.Tag=119
 logcat.view.colsize.Text=613
 logcat.view.colsize.Time=150
-<<<<<<< HEAD
-logcat.view.filters.list=name\: 'log', tag\: 'log', text\: '', pid\: '', app\: '', level\: 'verbose', 
-=======
-logcat.view.filters.list=name\: 'log', tag\: 'log', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'touchState', tag\: 'touchState', text\: '', pid\: '', app\: '', level\: 'verbose', 
->>>>>>> 1b6f8192eddc9df3280975cd17f47dc7feb92817
+logcat.view.filters.list=name\: 'log', tag\: 'log', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'touchState', tag\: 'touchState', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'question', tag\: 'question', text\: '', pid\: '', app\: '', level\: 'verbose', 
 threadPanel.Col0=35
 threadPanel.Col1=49
 threadPanel.Col2=75

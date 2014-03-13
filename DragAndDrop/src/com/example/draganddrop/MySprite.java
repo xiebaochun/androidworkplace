@@ -1,5 +1,6 @@
 package com.example.draganddrop;
 
+import org.cocos2d.nodes.CCLabel;
 import org.cocos2d.nodes.CCSprite;
 import org.cocos2d.types.CGPoint;
 import org.cocos2d.types.CGRect;
@@ -14,7 +15,7 @@ public class MySprite{
 	public int textTureHeight;
 	public Rectangle collisionRect;
 	public float fixSizeRate=1;
-	
+	public Boolean isHoldCard=false;
 	public MySprite(String filePath,Boolean isVisible,CGPoint position,int z)
 	{
 		
@@ -56,6 +57,7 @@ public class MySprite{
 		sprite.setTextureRect(0, 0, this.textTureWidth, this.textTureHeight, false);
 		CommonItem.gameLayer.addChild(sprite,z);
 	}
+	
 	public void setPosition(float x, float y) {
 		this.sprite.setPosition(x*CommonItem.SIZE_RATE_X, y*CommonItem.SIZE_RATE_Y);
     }
