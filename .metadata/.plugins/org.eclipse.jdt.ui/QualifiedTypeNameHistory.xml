@@ -4,4 +4,9 @@
 <fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="org.cocos2d.types.ccColor3B"/>
 <fullyQualifiedTypeName name="org.cocos2d.nodes.CCLabel"/>
+<fullyQualifiedTypeName name="org.cocos2d.types.CGSize"/>
+<fullyQualifiedTypeName name="org.cocos2d.nodes.CCLabel.TextAlignment"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.example.draganddrop.Card"/>
+<fullyQualifiedTypeName name="com.example.draganddrop.Card.Style"/>
 </qualifiedTypeNameHistroy>

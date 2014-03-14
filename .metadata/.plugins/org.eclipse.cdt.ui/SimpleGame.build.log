@@ -1,0 +1,13 @@
+
+**** Build of configuration Default for project SimpleGame ****
+
+bash F:/cocos2d/cocos2d-x-3.0-master/samples/Cpp/SimpleGame/proj.android/build_native.sh 
+cygwin warning:
+  MS-DOS style path detected: F:\cocos2d\cocos2d-x-3.0-master\samples\Cpp\SimpleGame\proj.android
+  Preferred POSIX equivalent is: /cygdrive/f/cocos2d/cocos2d-x-3.0-master/samples/Cpp/SimpleGame/proj.android
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+NDK_ROOT not defined. Please define NDK_ROOT in your environment or in local.properties
+
+**** Build Finished ****

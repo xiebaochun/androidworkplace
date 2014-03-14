@@ -41,6 +41,8 @@ public class GameLayer extends CCColorLayer{
 	public final CGPoint GAME_START_POSITION=CGPoint.make(430,216);
 	public final CGPoint CONFIRM_BUTTON_POSITION=CGPoint.make(1000,23);
 	public final CGPoint QUESTION_TEXT_POSITION=CGPoint.make(100,400);
+	public final CGPoint RESULT_POSITION=CGPoint.make(100,400);
+	
 	
 	public final int TIME_BAR_HEIGHT=40;
 	public final int TIME_BAR_WIDTH=768;
@@ -48,12 +50,14 @@ public class GameLayer extends CCColorLayer{
 	public CGPoint touchPoint;
 	public Boolean isGamePause=true;
 	public Boolean goToPrepare=true;
+	public Boolean isSortMode=false;
 	MySprite backGround;
 	MySprite stateBar;
 	MySprite TimeBar;
 	//MySprite player;
 	MySprite question_image;
 	MySprite timeBar;
+	MySprite result;
 	Button gameStart;
 	Button replay;
 	Button pass;
@@ -68,7 +72,7 @@ public class GameLayer extends CCColorLayer{
     Number stage_num;
     Number target_num;
     //CCLabel test_label;
-    String currenAnswer="red";
+    Card.Style currenAnswer=Card.Style.red;
     Random gl_rnd;
     int question_choose=-1;
     CGPoint[] CardsPosition=new CGPoint[10];
@@ -103,7 +107,8 @@ public class GameLayer extends CCColorLayer{
 	    question_image.fixedSizeRate((float)1280/2500);
 	    
 	    backGround=new MySprite("bg_b.png",true,CGPoint.zero(),-5);
-	    stateBar=new MySprite("StateBar.png",true,CGPoint.make(15, 555),-4);
+	    stateBar=new MySprite("StateBar.png",true,CGPoint.make(15, 555),-4);//this is the game back ground image
+	    result=new MySprite("",false,RESULT_POSITION,1,2,-3);//if player click the confirm button,then this will show to indicate the result,correct or incorrect
 	    
 	    score_num=new Number(0,16,CGPoint.make(200, 650));
 	    score_num.setNumber(score);
@@ -189,6 +194,8 @@ public class GameLayer extends CCColorLayer{
 		 for(int i=0;i<EACH_CARDS_COUNT;i++)
 	   	 {
 		    Card cardSprite=new Card("red-"+(i+1)+".png",false,CGPoint.zero());
+		    cardSprite.style=Card.Style.red;
+		    cardSprite.id=i;
 		    cardSprite.fixedSizeRate(CommonItem.fixedSizeRate);
 		    
 	   		try{
@@ -204,6 +211,8 @@ public class GameLayer extends CCColorLayer{
 	   	 {
 	   		Card cardSprite=new Card("blue-"+(i+1)+".png",false,CGPoint.zero());
 	   		CommonItem.blueCards[i]=cardSprite;
+	   	    cardSprite.style=Card.Style.blue;
+		    cardSprite.id=i;
 	   		CommonItem.allCards.add(cardSprite);
 	   		cardSprite.fixedSizeRate(CommonItem.fixedSizeRate);
 	   		
@@ -212,6 +221,8 @@ public class GameLayer extends CCColorLayer{
 	   	 {
 	   		Card cardSprite=new Card("green-"+(i+1)+".png",false,CGPoint.zero());
 	   		CommonItem.greenCards[i]=cardSprite;
+	   	    cardSprite.style=Card.Style.green;
+		    cardSprite.id=i;
 	   		CommonItem.allCards.add(cardSprite);
 	   		cardSprite.fixedSizeRate(CommonItem.fixedSizeRate);
 	   		
@@ -256,11 +267,10 @@ public class GameLayer extends CCColorLayer{
 				   {
 					   
 					   goToPrepare=false;
-					   question_choose=gl_rnd.nextInt(9);
+					   question_choose=gl_rnd.nextInt(2);
 					   prepareQuestion(question_choose);
 				       prepareCards();
-				   }
-				  
+				   }		  
 				   cardsPositionUpdate();
 			   }
 			   
@@ -280,21 +290,20 @@ public class GameLayer extends CCColorLayer{
 	}
 	private void cardsPositionUpdate() {
 		
-		for(int i=0;i<CommonItem.redCards.length;i++)
+		for(Card card:CommonItem.allCards)
 		{
-			if(CommonItem.redCards[i].getVisible()==true)
+			if(card.getVisible()==true)
 			{
-				CommonItem.redCards[i].collisionRectUpdate();
+				card.collisionRectUpdate();
 				
 
-				if(CommonItem.redCards[i].isTouched==true)
+				if(card.isTouched==true)
 				{
 					
-					if(CommonItem.redCards[i].collisionRect.contains(CommonItem.touchPoint)&&CommonItem.currenTouchState==CommonItem.TouchState.move)
+					if(card.collisionRect.contains(CommonItem.touchPoint)&&CommonItem.currenTouchState==CommonItem.TouchState.move)
 					{
-					///redCards[i].setPosition(CommonItem.touchPoint.x-50,CommonItem.touchPoint.y-50);
-						CommonItem.redCards[i].setPosition((CommonItem.touchPoint.x),(CommonItem.touchPoint.y));
-				    
+					///allCards[i].setPosition(CommonItem.touchPoint.x-50,CommonItem.touchPoint.y-50);
+						card.setPosition((CommonItem.touchPoint.x),(CommonItem.touchPoint.y));
 					}
 				}
 		   }
@@ -302,85 +311,89 @@ public class GameLayer extends CCColorLayer{
 		}
 	}
 	private void prepareCards() {
-		if(currenAnswer.equalsIgnoreCase("red"))
+		if(isSortMode==false)
 		{
-			int temp=gl_rnd.nextInt(CommonItem.question.easyQuestion.level.get(stage).maxNumber-CommonItem.question.easyQuestion.level.get(stage).minNumber)+CommonItem.question.easyQuestion.level.get(stage).minNumber;
-			for(int i=0;i<CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
+			if(question_choose==0)
 			{
-				answers[i].setVisible(true);
-			}
-			for(int i=0;i<=CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
-			{
-				int temp2=gl_rnd.nextInt(5);
-				CommonItem.redCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
-				CommonItem.redCards[temp2].setVisible(true);
-				Log.v("log","redCards prepared");
-			}
-			for(int i=0;i<=temp-CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
-			{
-				int temp3=gl_rnd.nextInt(5);
-				CGPoint position;
-				while(true)
+				int temp=gl_rnd.nextInt(CommonItem.question.easyQuestion.level.get(stage).maxNumber-CommonItem.question.easyQuestion.level.get(stage).minNumber)+CommonItem.question.easyQuestion.level.get(stage).minNumber;
+				for(int i=0;i<CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
 				{
-				    position=CardsPosition[gl_rnd.nextInt(10)];
-					if(thisPoistionHasNoCard(position))
+					answers[i].setVisible(true);
+				}
+				for(int i=0;i<=CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp2=gl_rnd.nextInt(5);
+					CommonItem.redCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
+					CommonItem.redCards[temp2].setVisible(true);
+					Log.v("log","redCards prepared");
+				}
+				for(int i=0;i<=temp-CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp3=gl_rnd.nextInt(5);
+					CGPoint position;
+					while(true)
 					{
-						break;
+					    position=CardsPosition[gl_rnd.nextInt(10)];
+						if(thisPoistionHasNoCard(position))
+						{
+							break;
+						}
+					}
+					if(i%2==0)
+					{
+						CommonItem.blueCards[temp3].setPosition_ds(position);
+						CommonItem.blueCards[temp3].setVisible(true);
+						Log.v("log","blueCards prepared");
+					}else
+					{
+						CommonItem.greenCards[temp3].setPosition_ds(position);
+						CommonItem.greenCards[temp3].setVisible(true);
+						Log.v("log","greenCards prepared");
 					}
 				}
-				if(i%2==0)
+			}
+			if(question_choose==1)
+			{
+				int temp=gl_rnd.nextInt(CommonItem.question.easyQuestion.level.get(stage).maxNumber-CommonItem.question.easyQuestion.level.get(stage).minNumber)+CommonItem.question.easyQuestion.level.get(stage).minNumber;
+				for(int i=0;i<CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
 				{
-					CommonItem.blueCards[temp3].setPosition_ds(position);
-					CommonItem.blueCards[temp3].setVisible(true);
+					answers[i].setVisible(true);
+				}
+				for(int i=0;i<=CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp2=gl_rnd.nextInt(5);
+					CommonItem.blueCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
+					CommonItem.blueCards[temp2].setVisible(true);
 					Log.v("log","blueCards prepared");
-				}else
-				{
-					CommonItem.greenCards[temp3].setPosition_ds(position);
-					CommonItem.greenCards[temp3].setVisible(true);
-					Log.v("log","greenCards prepared");
 				}
-			}
-		}
-		if(currenAnswer.equalsIgnoreCase("blue"))
-		{
-			int temp=gl_rnd.nextInt(CommonItem.question.easyQuestion.level.get(stage).maxNumber-CommonItem.question.easyQuestion.level.get(stage).minNumber)+CommonItem.question.easyQuestion.level.get(stage).minNumber;
-			for(int i=0;i<CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
-			{
-				answers[i].setVisible(true);
-			}
-			for(int i=0;i<=CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
-			{
-				int temp2=gl_rnd.nextInt(5);
-				CommonItem.blueCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
-				CommonItem.blueCards[temp2].setVisible(true);
-				Log.v("log","blueCards prepared");
-			}
-			for(int i=0;i<=temp-CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
-			{
-				int temp3=gl_rnd.nextInt(5);
-				CGPoint position;
-				while(true)
+				for(int i=0;i<=temp-CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
 				{
-				    position=CardsPosition[gl_rnd.nextInt(10)];
-					if(thisPoistionHasNoCard(position))
+					int temp3=gl_rnd.nextInt(5);
+					CGPoint position;
+					while(true)
 					{
-						break;
+					    position=CardsPosition[gl_rnd.nextInt(10)];
+						if(thisPoistionHasNoCard(position))
+						{
+							break;
+						}
+					}
+					if(i%2==0)
+					{
+					CommonItem.redCards[temp3].setPosition_ds(position);
+					CommonItem.redCards[temp3].setVisible(true);
+					//Log.v("log","blueCards prepared");
+					}else
+					{
+						CommonItem.greenCards[temp3].setPosition_ds(position);
+						CommonItem.greenCards[temp3].setVisible(true);
+						//Log.v("log","greenCards prepared");
 					}
 				}
-				if(i%2==0)
-				{
-				CommonItem.redCards[temp3].setPosition_ds(position);
-				CommonItem.redCards[temp3].setVisible(true);
-				//Log.v("log","blueCards prepared");
-				}else
-				{
-					CommonItem.greenCards[temp3].setPosition_ds(position);
-					CommonItem.greenCards[temp3].setVisible(true);
-					//Log.v("log","greenCards prepared");
-				}
-			}
-		}
-		if(currenAnswer.equalsIgnoreCase("green"))
+	    	}
+			
+		
+		if(question_choose==2)
 		{
 			int temp=gl_rnd.nextInt(CommonItem.question.easyQuestion.level.get(stage).maxNumber-CommonItem.question.easyQuestion.level.get(stage).minNumber)+CommonItem.question.easyQuestion.level.get(stage).minNumber;
 			for(int i=0;i<CommonItem.question.easyQuestion.level.get(stage).answerNumber;i++)
@@ -418,44 +431,169 @@ public class GameLayer extends CCColorLayer{
 					//Log.v("log","greenCards prepared");
 				}
 			}
-		}
 		
+		}
+	  }//is sord =false
+		else
+	  {
+			if(question_choose==0)
+			{
+				int temp=gl_rnd.nextInt(CommonItem.question.sortQuestion.level.get(stage).maxNumber-CommonItem.question.sortQuestion.level.get(stage).minNumber)+CommonItem.question.sortQuestion.level.get(stage).minNumber;
+				for(int i=0;i<CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+				{
+					answers[i].setVisible(true);
+				}
+				for(int i=0;i<=CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp2=gl_rnd.nextInt(5);
+					CommonItem.redCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
+					CommonItem.redCards[temp2].setVisible(true);
+					Log.v("log","redCards prepared");
+				}
+				for(int i=0;i<=temp-CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp3=gl_rnd.nextInt(5);
+					CGPoint position;
+					while(true)
+					{
+					    position=CardsPosition[gl_rnd.nextInt(10)];
+						if(thisPoistionHasNoCard(position))
+						{
+							break;
+						}
+					}
+					if(i%2==0)
+					{
+						CommonItem.blueCards[temp3].setPosition_ds(position);
+						CommonItem.blueCards[temp3].setVisible(true);
+						Log.v("log","blueCards prepared");
+					}else
+					{
+						CommonItem.greenCards[temp3].setPosition_ds(position);
+						CommonItem.greenCards[temp3].setVisible(true);
+						Log.v("log","greenCards prepared");
+					}
+				}
+			}
+			if(question_choose==1)
+			{
+				int temp=gl_rnd.nextInt(CommonItem.question.sortQuestion.level.get(stage).maxNumber-CommonItem.question.sortQuestion.level.get(stage).minNumber)+CommonItem.question.sortQuestion.level.get(stage).minNumber;
+				for(int i=0;i<CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+				{
+					answers[i].setVisible(true);
+				}
+				for(int i=0;i<=CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp2=gl_rnd.nextInt(5);
+					CommonItem.blueCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
+					CommonItem.blueCards[temp2].setVisible(true);
+					Log.v("log","blueCards prepared");
+				}
+				for(int i=0;i<=temp-CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+				{
+					int temp3=gl_rnd.nextInt(5);
+					CGPoint position;
+					while(true)
+					{
+					    position=CardsPosition[gl_rnd.nextInt(10)];
+						if(thisPoistionHasNoCard(position))
+						{
+							break;
+						}
+					}
+					if(i%2==0)
+					{
+					CommonItem.redCards[temp3].setPosition_ds(position);
+					CommonItem.redCards[temp3].setVisible(true);
+					//Log.v("log","blueCards prepared");
+					}else
+					{
+						CommonItem.greenCards[temp3].setPosition_ds(position);
+						CommonItem.greenCards[temp3].setVisible(true);
+						//Log.v("log","greenCards prepared");
+					}
+				}
+	    	}
+			
+		
+		if(question_choose==2)
+		{
+			int temp=gl_rnd.nextInt(CommonItem.question.sortQuestion.level.get(stage).maxNumber-CommonItem.question.sortQuestion.level.get(stage).minNumber)+CommonItem.question.sortQuestion.level.get(stage).minNumber;
+			for(int i=0;i<CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+			{
+				answers[i].setVisible(true);
+			}
+			for(int i=0;i<=CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+			{
+				int temp2=gl_rnd.nextInt(5);
+				CommonItem.greenCards[temp2].setPosition_ds(CardsPosition[9-temp2]);
+				CommonItem.greenCards[temp2].setVisible(true);
+				Log.v("log","greenCards prepared");
+			}
+			for(int i=0;i<=temp-CommonItem.question.sortQuestion.level.get(stage).answerNumber;i++)
+			{
+				int temp3=gl_rnd.nextInt(5);
+				CGPoint position;
+				while(true)
+				{
+				    position=CardsPosition[gl_rnd.nextInt(10)];
+					if(thisPoistionHasNoCard(position))
+					{
+						break;
+					}
+				}
+				if(i%2==0)
+				{
+					CommonItem.redCards[temp3].setPosition_ds(position);
+					CommonItem.redCards[temp3].setVisible(true);
+					//Log.v("log","blueCards prepared");
+				}else
+				{
+					CommonItem.blueCards[temp3].setPosition_ds(position);
+					CommonItem.blueCards[temp3].setVisible(true);
+					//Log.v("log","greenCards prepared");
+				}
+			}
+		
+		}
+	  }
 	}
 	//prepare answerCards
 	private void prepareQuestion(int temp) {
 		try{
-		//int	temp=gl_rnd.nextInt(9);
-		for(MyLabel label:easyQuestionLabels)
-		{
-			if(label.label.getVisible()==true)
+			//int	temp=gl_rnd.nextInt(9);
+			for(MyLabel label:easyQuestionLabels)
 			{
-			label.setVisible(false);
+				if(label.label.getVisible()==true)
+				{
+				   label.setVisible(false);
+				}
 			}
-		}
-		if(temp<=3&&temp>=0)
-		{
-			currenAnswer="red";
-			easyQuestionLabels[0].setVisible(true);
-			//question_text.setString(""+CommonItem.question.easyQuestion.question.get(0));
-			//question_text.setString("識");
-			Log.v("log","prepare answerCards"+CommonItem.question.easyQuestion.question.get(0));
-		}
-		if(temp>3&&temp<=6)
-		{
-			currenAnswer="blue";
-			easyQuestionLabels[1].setVisible(true);
-			//question_text.setString(""+CommonItem.question.easyQuestion.question.get(1));
-			//question_text.setString("識識");
-			Log.v("log","prepare answerCards"+CommonItem.question.easyQuestion.question.get(1));
-		}
-		if(temp>6)
-		{
-			currenAnswer="green";
-			easyQuestionLabels[2].setVisible(true);
-			//question_text.setString(""+CommonItem.question.easyQuestion.question.get(2));
-			//question_text.setString("識識識");
-			Log.v("log","prepare answerCards"+CommonItem.question.easyQuestion.question.get(2));
-		}
+			for(MyLabel label:sortQuestionLabels)
+			{
+				if(label.label.getVisible()==true)
+				{
+				   label.setVisible(false);
+				}
+			}
+			
+			
+			int random2=gl_rnd.nextInt(1);
+			
+				currenAnswer=Card.Style.red;
+				if(random2==0)
+				{
+					isSortMode=false;
+			    	easyQuestionLabels[temp].setVisible(true);
+				}
+				else
+				{
+					isSortMode=true;
+					sortQuestionLabels[temp].setVisible(true);
+				}
+			
+			
+			
 		}
 		catch(Exception e)
 		{
@@ -483,6 +621,7 @@ public class GameLayer extends CCColorLayer{
 			  pass.isClicked=false;
 			  pass.mySetVisible(false);
 			  isGamePause=false;
+			  goToPrepare=true;
 			  stage++;
 			  stage_num.setNumber(stage);
 			  score=0;
@@ -500,6 +639,7 @@ public class GameLayer extends CCColorLayer{
 			  replay.isClicked=false;
 			  replay.mySetVisible(false);
 			  isGamePause=false;
+			  goToPrepare=true;
 			  score=0;
 			  score_num.setNumber(score);
 		  }
@@ -510,11 +650,100 @@ public class GameLayer extends CCColorLayer{
 			 {
 				 confirm_bt.isClicked=false;
 				 confirm_bt.setVisible(false);
+				 //if all answers place were holding card and those cards,which were holden were the same style to the current answer style
+				 if(isAllAnswerHoldCard()&&isAllCardStyleRight())
+				 {
+					 if(isSortMode==false)
+					 {
+						 result.currentFrameY=0;
+						 
+					 }
+					 else
+					 {
+						 if(isCardInOrder())
+						 {
+							 result.currentFrameY=0;
+							 
+						 }
+						 else
+						 {
+							 result.currentFrameY=1;
+							 
+						 }
+					 }
+				 }
+				 else
+				 {
+					 result.currentFrameY=1;
+					 
+				 }
+				 result.rectUpdate();
+				 result.setVisible(true);
 			 }
 		}
 		
 	}
 	
+	private boolean isCardInOrder() {
+		Card tempCard=null;
+		Card[] cards=null;
+		switch(question_choose)
+		{
+		case 0:
+			cards=CommonItem.redCards;
+			break;
+		case 1:
+			cards=CommonItem.blueCards;
+			break;
+		case 2:
+			cards=CommonItem.greenCards;
+			break;
+		}
+		for(int i=0;i<5;i++)
+		{
+			if(cards[i].isInAnswerPlace==true&&cards[i].getVisible()==true)
+			{
+				if(tempCard==null)
+				{
+					tempCard=cards[i];
+				}
+				else
+				{
+					if(tempCard.getPosition().x<cards[i].getPosition().x)
+					{
+						tempCard=cards[i];				
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+		}
+		 
+		return true;
+	}
+	private boolean isAllCardStyleRight() {
+		for(Card card:CommonItem.allCards)
+		{
+			if(card.getVisible()==true&&card.isInAnswerPlace==true&&card.style!=currenAnswer)
+			{
+				return false;
+			}
+				
+		}
+		return true;
+	}
+	private boolean isAllAnswerHoldCard() {
+		for(MySprite answer:answers)
+		{
+			if(answer.sprite.getVisible()==true&&answer.isHoldCard==false)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 	//ready next stage things 
 	private void goToNextStage() {
 		

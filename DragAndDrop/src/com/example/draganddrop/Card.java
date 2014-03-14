@@ -21,7 +21,7 @@ public class Card extends CCNode{
  	public int textTureHeight;
  	public float fixSizeRate=1;
  	public Rectangle collisionRect;
- 	public enum Style{red,blue,green};
+ 	public static enum Style{red,blue,green};
  	public Style style;
  	public int id;
  	
